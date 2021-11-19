@@ -1,0 +1,2 @@
+INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('b2105722-4167-11ec-ba1c-0242ac130002', 'Pedro', 'Chinese elm', '09/11/2021', 1, 'alive');
+INSERT into bonsai(id, name, species, acquisition_date, acquisition_age, status) values ('5aacbf4c-4168-11ec-ba1c-0242ac130002', 'Shang Shi', 'Japanese mapple', '09/11/2021', 5, 'dead');
