@@ -29,6 +29,18 @@ public class BonsaiEntity {
     @Column(name = "acquisition_age")
     private int acquisition_age;
 
+    @Column(name = "id_owner")
+    private UUID id_owner;
+
+    @Column(name = "last_pruning")
+    private String last_pruning;
+
+    @Column(name = "last_watering")
+    private String last_watering;
+
+    @Column(name = "last_repotting")
+    private String last_repotting;
+
 
     public BonsaiEntity(){
 
@@ -79,5 +91,37 @@ public class BonsaiEntity {
 
     public void setAcquisition_age(int acquisition_age) {
         this.acquisition_age = acquisition_age;
+    }
+
+    public UUID getId_owner() {
+        return id_owner;
+    }
+
+    public void setId_owner(UUID id_owner) {
+        this.id_owner = id_owner;
+    }
+
+    public String getLast_pruning() {
+        return last_pruning;
+    }
+
+    public void setLast_pruning(String last_pruning) {
+        this.last_pruning = last_pruning;
+    }
+
+    public String getLast_watering() {
+        return last_watering;
+    }
+
+    public void setLast_watering(String last_watering) {
+        this.last_watering = last_watering;
+    }
+
+    public String getLast_repotting() {
+        return last_repotting;
+    }
+
+    public void setLast_repotting(String last_repotting) {
+        this.last_repotting = last_repotting;
     }
 }

@@ -9,6 +9,9 @@ public class BonsaiDTOMapper {
         dto.setName(bonsai.getName());
         dto.setSpecies(bonsai.getSpecies());
         dto.setAcquisition_age(bonsai.getAcquisition_age());
+        dto.setLast_pruning(bonsai.getLast_pruning());
+        dto.setLast_repotting(bonsai.getLast_repotting());
+        dto.setLast_watering(bonsai.getLast_watering());
         return dto;
     }
 }

@@ -21,5 +21,4 @@ public class BonsaisApplication {
         return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build();
     }
 
-    //SSH
 }

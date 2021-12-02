@@ -4,6 +4,9 @@ public class BonsaiDTO {
     private String name;
     private String species;
     private int acquisition_age;
+    private String last_pruning;
+    private String last_watering;
+    private String last_repotting;
 
 
     public BonsaiDTO() {
@@ -33,4 +36,27 @@ public class BonsaiDTO {
         this.acquisition_age = acquisition_age;
     }
 
+    public String getLast_pruning() {
+        return last_pruning;
+    }
+
+    public void setLast_pruning(String last_pruning) {
+        this.last_pruning = last_pruning;
+    }
+
+    public String getLast_watering() {
+        return last_watering;
+    }
+
+    public void setLast_watering(String last_watering) {
+        this.last_watering = last_watering;
+    }
+
+    public String getLast_repotting() {
+        return last_repotting;
+    }
+
+    public void setLast_repotting(String last_repotting) {
+        this.last_repotting = last_repotting;
+    }
 }
