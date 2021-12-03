@@ -35,13 +35,13 @@ public class BonsaiEntity {
     @Column(name = "id_owner")
     private UUID id_owner;
 
-    @OneToMany(targetEntity = WateringEntity.class, mappedBy="bonsai")
+    @OneToMany(targetEntity = WateringEntity.class, mappedBy="bonsai", cascade = CascadeType.REMOVE)
     private List<WateringEntity> listWatering;
 
-    @OneToMany(targetEntity = PruningEntity.class, mappedBy="bonsai")
+    @OneToMany(targetEntity = PruningEntity.class, mappedBy="bonsai", cascade = CascadeType.REMOVE)
     private List<PruningEntity> listPruning;
 
-    @OneToMany(targetEntity = RepottingEntity.class, mappedBy="bonsai")
+    @OneToMany(targetEntity = RepottingEntity.class, mappedBy="bonsai", cascade = CascadeType.REMOVE)
     private List<RepottingEntity> listRepotting;
 
 

@@ -31,6 +31,22 @@ public class Bonsai {
         this.last_repotting = last_repotting;
     }
 
+    public Bonsai update(Bonsai bonsai){
+        if (bonsai.getName() != null){
+            this.name = bonsai.getName();
+        }
+        if (bonsai.getSpecies()!= null){
+            this.species = bonsai.getSpecies();
+        }
+        if (bonsai.getAcquisition_date()!= null){
+            this.acquisition_date = bonsai.getAcquisition_date();
+        }
+        if (bonsai.getAcquisition_age()!= 0){
+            this.acquisition_age = bonsai.getAcquisition_age();
+        }
+        return this;
+    }
+
     public String getName() {
         return name;
     }
