@@ -48,23 +48,4 @@ public class BonsaiRepository {
     public void deleteById(UUID id) {
         bonsaisDao.deleteById(id);
     }
-
-    public Bonsai patch(Bonsai bonsai, UUID id) {
-        BonsaiEntity res = bonsaisDao.getById(id);
-        if (bonsai.getName() != null){
-            res.setName(bonsai.getName());
-        }
-        if (bonsai.getSpecies()!= null){
-            res.setSpecies(bonsai.getSpecies());
-        }
-        if (bonsai.getAcquisition_date()!= null){
-            res.setAcquisition_date(bonsai.getAcquisition_date());
-        }
-        if (bonsai.getAcquisition_age()!= 0){
-            res.setAcquisition_age(bonsai.getAcquisition_age());
-        }
-        bonsaisDao.deleteById(id);
-        return save(BonsaiMapper.mapfromEntity(res));
-
-    }
 }

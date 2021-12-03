@@ -1,6 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.domain.services;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
+import fr.iut.csid.bonsais.bonsai.domain.models.BonsaiMapper;
 import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiEntity;
 import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiRepository;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,26 @@ public class BonsaiService {
     }
 
     public Bonsai patch(Bonsai bonsai, UUID id) {
-        return repository.patch(bonsai, id);
+        Bonsai res = repository.findById(id);
+        if (bonsai.getName() != null){
+            res.setName(bonsai.getName());
+        }
+        if (bonsai.getSpecies()!= null){
+            res.setSpecies(bonsai.getSpecies());
+        }
+        if (bonsai.getAcquisition_date()!= null){
+            res.setAcquisition_date(bonsai.getAcquisition_date());
+        }
+        if (bonsai.getAcquisition_age()!= 0){
+            res.setAcquisition_age(bonsai.getAcquisition_age());
+        }
+        return save(res);
+
+    }
+
+    public void putStatus(String status, UUID id) {
+        Bonsai bonsai = findById(id);
+        bonsai.setStatus(status);
+        save(bonsai);
     }
 }

@@ -1,15 +1,27 @@
 package fr.iut.csid.bonsais.bonsai.exposition;
 
+import java.util.UUID;
+
 public class BonsaiDTO {
+    private UUID id;
     private String name;
     private String species;
     private int acquisition_age;
     private String last_pruning;
     private String last_watering;
     private String last_repotting;
+    private String status;
 
 
     public BonsaiDTO() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -58,5 +70,13 @@ public class BonsaiDTO {
 
     public void setLast_repotting(String last_repotting) {
         this.last_repotting = last_repotting;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

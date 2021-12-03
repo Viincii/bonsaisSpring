@@ -1,6 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.domain.models;
 
 
+import java.util.Date;
 import java.util.UUID;
 
 public class Bonsai {
@@ -12,12 +13,12 @@ public class Bonsai {
     private String acquisition_date;
     private int acquisition_age;
     private UUID id_owner;
-    private String last_pruning;
-    private String last_watering;
-    private String last_repotting;
+    private Date last_watering;
+    private Date last_pruning;
+    private Date last_repotting;
 
 
-    public Bonsai(UUID id, String name, String species, String status, String acquisition_date, int acquisition_age, UUID id_owner, String last_pruning, String last_repotting, String last_watering) {
+    public Bonsai(UUID id, String name, String species, String status, String acquisition_date, int acquisition_age, UUID id_owner, Date last_watering, Date last_pruning, Date last_repotting) {
         this.id=id;
         this.name = name;
         this.species = species;
@@ -25,9 +26,9 @@ public class Bonsai {
         this.acquisition_date = acquisition_date;
         this.acquisition_age = acquisition_age;
         this.id_owner = id_owner;
+        this.last_watering = last_watering;
         this.last_pruning= last_pruning;
         this.last_repotting = last_repotting;
-        this.last_watering = last_watering;
     }
 
     public String getName() {
@@ -58,15 +59,43 @@ public class Bonsai {
         return id_owner;
     }
 
-    public String getLast_pruning() {
+    public Date getLast_pruning() {
         return last_pruning;
     }
 
-    public String getLast_watering() {
+    public Date getLast_repotting() {
+        return last_repotting;
+    }
+
+    public Date getLast_watering() {
         return last_watering;
     }
 
-    public String getLast_repotting() {
-        return last_repotting;
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAcquisition_date(String acquisition_date) {
+        this.acquisition_date = acquisition_date;
+    }
+
+    public void setAcquisition_age(int acquisition_age) {
+        this.acquisition_age = acquisition_age;
+    }
+
+    public void setId_owner(UUID id_owner) {
+        this.id_owner = id_owner;
     }
 }

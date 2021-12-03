@@ -1,8 +1,11 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
+import fr.iut.csid.bonsais.bonsai.domain.models.Watering;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "bonsai")
@@ -32,14 +35,14 @@ public class BonsaiEntity {
     @Column(name = "id_owner")
     private UUID id_owner;
 
-    @Column(name = "last_pruning")
-    private String last_pruning;
+    @OneToMany(targetEntity = WateringEntity.class, mappedBy="bonsai")
+    private List<WateringEntity> listWatering;
 
-    @Column(name = "last_watering")
-    private String last_watering;
+    @OneToMany(targetEntity = PruningEntity.class, mappedBy="bonsai")
+    private List<PruningEntity> listPruning;
 
-    @Column(name = "last_repotting")
-    private String last_repotting;
+    @OneToMany(targetEntity = RepottingEntity.class, mappedBy="bonsai")
+    private List<RepottingEntity> listRepotting;
 
 
     public BonsaiEntity(){
@@ -101,27 +104,27 @@ public class BonsaiEntity {
         this.id_owner = id_owner;
     }
 
-    public String getLast_pruning() {
-        return last_pruning;
+    public List<WateringEntity> getListWatering() {
+        return listWatering;
     }
 
-    public void setLast_pruning(String last_pruning) {
-        this.last_pruning = last_pruning;
+    public void setListWatering(List<WateringEntity> listWatering) {
+        this.listWatering = listWatering;
     }
 
-    public String getLast_watering() {
-        return last_watering;
+    public List<PruningEntity> getListPruning() {
+        return listPruning;
     }
 
-    public void setLast_watering(String last_watering) {
-        this.last_watering = last_watering;
+    public void setListPruning(List<PruningEntity> listPruning) {
+        this.listPruning = listPruning;
     }
 
-    public String getLast_repotting() {
-        return last_repotting;
+    public List<RepottingEntity> getListRepotting() {
+        return listRepotting;
     }
 
-    public void setLast_repotting(String last_repotting) {
-        this.last_repotting = last_repotting;
+    public void setListRepotting(List<RepottingEntity> listRepotting) {
+        this.listRepotting = listRepotting;
     }
 }

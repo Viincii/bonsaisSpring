@@ -1,5 +1,3 @@
-create table if not exists pruning (id_pruning UUID, datetime varchar, id_bonsai UUID);
+create table if not exists pruning (id_pruning UUID, datetime timestamp, id_bonsai UUID);
 alter table pruning add constraint PK_pruning PRIMARY KEY (id_pruning);
 alter table pruning add constraint FK_owner FOREIGN KEY(id_bonsai) references bonsai(id);
-
-alter table bonsai add  if not exists last_pruning varchar;
