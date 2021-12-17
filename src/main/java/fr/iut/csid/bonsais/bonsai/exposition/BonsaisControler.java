@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bonsais")
@@ -29,11 +30,7 @@ public class BonsaisControler {
 
     @GetMapping
     public ResponseEntity<List<BonsaiDTO>> findBonsais(){
-        List<Bonsai> bonsaiList = service.findAll();
-        List<BonsaiDTO> bonsaiDTOList = new ArrayList<>();
-        for (Bonsai bonsai: bonsaiList){
-            bonsaiDTOList.add(BonsaiDTOMapper.mapFromBonsai(bonsai));
-        }
+        List<BonsaiDTO> bonsaiDTOList = service.findAll().stream().map(bonsai -> BonsaiDTOMapper.mapFromBonsai(bonsai)).collect(Collectors.toList());
         if (!bonsaiDTOList.isEmpty())
             return ResponseEntity.ok(bonsaiDTOList);
         else
