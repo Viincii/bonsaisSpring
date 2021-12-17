@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class OwnerRepository {
@@ -24,5 +26,14 @@ public class OwnerRepository {
             owners.add(OwnerMapper.mapFromEntity(ownerEntity));
         }
         return owners;
+    }
+
+    public Optional<Owner> findById(UUID uuid) {
+        Optional<OwnerEntity> ownerEntity = ownerDao.findById(uuid);
+        return ownerEntity.map(OwnerMapper::mapFromEntity);
+    }
+
+    public Owner save(Owner owner){
+        return OwnerMapper.mapFromEntity(ownerDao.save(OwnerEntityMapper.mapFromOwner(owner)));
     }
 }

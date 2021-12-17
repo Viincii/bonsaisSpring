@@ -9,8 +9,9 @@ public class BonsaiMapper {
 
     public static Bonsai mapfromEntity(BonsaiEntity bonsaiEntity){
         Date lastWatering;
-        if (bonsaiEntity.getListWatering()== null || bonsaiEntity.getListWatering().isEmpty())
+        if (bonsaiEntity.getListWatering()== null || bonsaiEntity.getListWatering().isEmpty()) {
             lastWatering = null;
+        }
         else
             lastWatering = bonsaiEntity.getListWatering().get(0).getDate();
         Date lastPruning;
@@ -27,6 +28,6 @@ public class BonsaiMapper {
     }
 
     public static Bonsai mapfromDTO(BonsaiDTO bonsaiDTO){
-        return new Bonsai(null, bonsaiDTO.getName(), bonsaiDTO.getSpecies(),bonsaiDTO.getStatus(), null,bonsaiDTO.getAcquisition_age(), null, null, null, null);
+        return new Bonsai(bonsaiDTO.getId(), bonsaiDTO.getName(), bonsaiDTO.getSpecies(),bonsaiDTO.getStatus(), null,bonsaiDTO.getAcquisition_age(), null, null, null, null);
     }
 }

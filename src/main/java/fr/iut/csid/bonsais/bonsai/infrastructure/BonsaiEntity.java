@@ -1,5 +1,6 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
+import fr.iut.csid.bonsais.bonsai.exposition.Status;
 import fr.iut.csid.bonsais.owner.infrastructure.OwnerEntity;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,7 +24,8 @@ public class BonsaiEntity {
     private String species;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "acquisition_date")
     private String acquisition_date;
@@ -72,11 +74,11 @@ public class BonsaiEntity {
         this.species = species;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
