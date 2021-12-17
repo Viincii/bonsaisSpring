@@ -1,11 +1,9 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
-import fr.iut.csid.bonsais.bonsai.domain.models.Watering;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "bonsai")
@@ -32,6 +30,7 @@ public class BonsaiEntity {
     @Column(name = "acquisition_age")
     private int acquisition_age;
 
+    @ManyToOne
     @Column(name = "id_owner")
     private UUID id_owner;
 
