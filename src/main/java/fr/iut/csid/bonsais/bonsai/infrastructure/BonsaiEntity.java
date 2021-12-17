@@ -1,11 +1,11 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
-import fr.iut.csid.bonsais.bonsai.domain.models.Watering;
+import fr.iut.csid.bonsais.bonsai.exposition.Status;
+import fr.iut.csid.bonsais.owner.infrastructure.OwnerEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "bonsai")
@@ -24,7 +24,8 @@ public class BonsaiEntity {
     private String species;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "acquisition_date")
     private String acquisition_date;
@@ -32,8 +33,9 @@ public class BonsaiEntity {
     @Column(name = "acquisition_age")
     private int acquisition_age;
 
-    @Column(name = "id_owner")
-    private UUID id_owner;
+    @ManyToOne
+    @JoinColumn(name = "id_owner")
+    private OwnerEntity owner;
 
     @OneToMany(targetEntity = WateringEntity.class, mappedBy="bonsai", cascade = CascadeType.REMOVE)
     private List<WateringEntity> listWatering;
@@ -72,11 +74,11 @@ public class BonsaiEntity {
         this.species = species;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -96,12 +98,12 @@ public class BonsaiEntity {
         this.acquisition_age = acquisition_age;
     }
 
-    public UUID getId_owner() {
-        return id_owner;
+    public OwnerEntity getId_owner() {
+        return owner;
     }
 
-    public void setId_owner(UUID id_owner) {
-        this.id_owner = id_owner;
+    public void setId_owner(OwnerEntity owner) {
+        this.owner = owner;
     }
 
     public List<WateringEntity> getListWatering() {

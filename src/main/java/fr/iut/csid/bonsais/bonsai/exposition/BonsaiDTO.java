@@ -7,10 +7,11 @@ public class BonsaiDTO {
     private String name;
     private String species;
     private int acquisition_age;
+    private String acquisition_date;
     private String last_pruning;
     private String last_watering;
     private String last_repotting;
-    private String status;
+    private Status status;
 
 
     public BonsaiDTO() {
@@ -72,11 +73,19 @@ public class BonsaiDTO {
         this.last_repotting = last_repotting;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getAcquisition_date() {
+        return acquisition_date;
+    }
+
+    public void setAcquisition_date(String acquisition_date) {
+        this.acquisition_date = acquisition_date;
     }
 }

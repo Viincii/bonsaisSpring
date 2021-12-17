@@ -1,6 +1,8 @@
 package fr.iut.csid.bonsais.bonsai.domain.models;
 
 
+import fr.iut.csid.bonsais.bonsai.exposition.Status;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -9,7 +11,7 @@ public class Bonsai {
     private UUID id;
     private String name;
     private String species;
-    private String status;
+    private Status status;
     private String acquisition_date;
     private int acquisition_age;
     private UUID id_owner;
@@ -18,7 +20,7 @@ public class Bonsai {
     private Date last_repotting;
 
 
-    public Bonsai(UUID id, String name, String species, String status, String acquisition_date, int acquisition_age, UUID id_owner, Date last_watering, Date last_pruning, Date last_repotting) {
+    public Bonsai(UUID id, String name, String species, Status status, String acquisition_date, int acquisition_age, UUID id_owner, Date last_watering, Date last_pruning, Date last_repotting) {
         this.id=id;
         this.name = name;
         this.species = species;
@@ -55,7 +57,7 @@ public class Bonsai {
         return species;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -99,7 +101,7 @@ public class Bonsai {
         this.species = species;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

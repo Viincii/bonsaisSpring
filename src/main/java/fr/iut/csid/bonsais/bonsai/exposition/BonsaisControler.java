@@ -5,11 +5,13 @@ import fr.iut.csid.bonsais.bonsai.domain.services.BonsaiService;
 import fr.iut.csid.bonsais.bonsai.domain.services.PruningService;
 import fr.iut.csid.bonsais.bonsai.domain.services.RepottingService;
 import fr.iut.csid.bonsais.bonsai.domain.services.WateringService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bonsais")
@@ -29,11 +31,10 @@ public class BonsaisControler {
 
     @GetMapping
     public ResponseEntity<List<BonsaiDTO>> findBonsais(){
-        List<Bonsai> bonsaiList = service.findAll();
-        List<BonsaiDTO> bonsaiDTOList = new ArrayList<>();
-        for (Bonsai bonsai: bonsaiList){
-            bonsaiDTOList.add(BonsaiDTOMapper.mapFromBonsai(bonsai));
-        }
+        List<BonsaiDTO> bonsaiDTOList = service.findAll().stream()
+                .map(bonsai -> BonsaiDTOMapper.mapFromBonsai(bonsai))
+                .collect(Collectors.toList());
+
         if (!bonsaiDTOList.isEmpty())
             return ResponseEntity.ok(bonsaiDTOList);
         else
@@ -46,7 +47,7 @@ public class BonsaisControler {
             Bonsai bonsai = service.findById(id);
             BonsaiDTO bonsaiDTO = BonsaiDTOMapper.mapFromBonsai(bonsai);
             if(bonsaiDTO.getStatus()==null){
-                return ResponseEntity.status(410).build();
+                return ResponseEntity.status(HttpStatus.GONE).build();
             }
             else{
                 return ResponseEntity.ok(bonsaiDTO);
@@ -62,7 +63,8 @@ public class BonsaisControler {
     public ResponseEntity<BonsaiDTO> create(@RequestBody BonsaiDTO bonsai){
         Bonsai bonsai1 = BonsaiMapper.mapfromDTO(bonsai);
         Bonsai res = service.save(bonsai1);
-        return ResponseEntity.created(URI.create("/bonsais/"+ res.getId())).body(BonsaiDTOMapper.mapFromBonsai(res));
+        BonsaiDTO createdDto = BonsaiDTOMapper.mapFromBonsai(res);
+        return ResponseEntity.created(URI.create("/bonsais/"+ res.getId())).body(createdDto);
     }
 
     @DeleteMapping("/{uuid}")
@@ -91,15 +93,10 @@ public class BonsaisControler {
     }
 
     @PutMapping("/{uuid}/status")
-    public ResponseEntity<BonsaiDTO> putStatus(@RequestBody Map<String, String> body, @PathVariable("uuid") UUID id){
+    public ResponseEntity<BonsaiDTO> putStatus(@RequestBody Status status, @PathVariable("uuid") UUID id){
         try{
-            List<String> acceptedStatus = Arrays.asList("dead", "alive", "unknown");
-            if(body.get("status") == null || !acceptedStatus.contains(body.get("status")))
-                return ResponseEntity.badRequest().build();
-            else{
-                service.putStatus(body.get("status"), id);
-                return ResponseEntity.noContent().build();
-            }
+            service.putStatus(status, id);
+            return ResponseEntity.noContent().build();
         }catch (NullPointerException e){
             return ResponseEntity.notFound().build();
         }catch (Exception e){

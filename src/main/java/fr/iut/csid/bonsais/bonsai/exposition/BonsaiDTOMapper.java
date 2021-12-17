@@ -25,6 +25,7 @@ public class BonsaiDTOMapper {
             dto.setLast_repotting(dateFormat.format(lastRepotting));
 
         dto.setStatus(bonsai.getStatus());
+        dto.setAcquisition_date(bonsai.getAcquisition_date());
         return dto;
     }
 }
