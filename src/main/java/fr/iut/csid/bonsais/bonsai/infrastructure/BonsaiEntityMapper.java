@@ -12,7 +12,7 @@ public class BonsaiEntityMapper {
         bonsaiEntity.setStatus(bonsai.getStatus());
         bonsaiEntity.setAcquisition_age(bonsai.getAcquisition_age());
         bonsaiEntity.setAcquisition_date(bonsai.getAcquisition_date());
-        bonsaiEntity.setId_owner(bonsai.getId_owner());
+        bonsaiEntity.setId_owner(/*bonsai.getId_owner()*/null);
         return bonsaiEntity;
     }
 }

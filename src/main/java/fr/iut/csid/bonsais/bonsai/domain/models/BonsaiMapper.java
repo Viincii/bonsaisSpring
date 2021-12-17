@@ -23,7 +23,7 @@ public class BonsaiMapper {
             lastRepotting = null;
         else
             lastRepotting = bonsaiEntity.getListRepotting().get(0).getDate();
-        return new Bonsai(bonsaiEntity.getId(),bonsaiEntity.getName(), bonsaiEntity.getSpecies(),bonsaiEntity.getStatus(), bonsaiEntity.getAcquisition_date(), bonsaiEntity.getAcquisition_age(), bonsaiEntity.getId_owner(), lastWatering, lastPruning, lastRepotting);
+        return new Bonsai(bonsaiEntity.getId(),bonsaiEntity.getName(), bonsaiEntity.getSpecies(),bonsaiEntity.getStatus(), bonsaiEntity.getAcquisition_date(), bonsaiEntity.getAcquisition_age(), null, lastWatering, lastPruning, lastRepotting);
     }
 
     public static Bonsai mapfromDTO(BonsaiDTO bonsaiDTO){

@@ -21,7 +21,7 @@ public class OwnerEntity {
     private String name;
 
     @OneToMany(targetEntity = BonsaiEntity.class, mappedBy = "owner", cascade = CascadeType.DETACH)
-    private List<Bonsai> bonsais;
+    private List<BonsaiEntity> bonsais;
 
     public OwnerEntity() {
     }
@@ -42,11 +42,11 @@ public class OwnerEntity {
         this.name = name;
     }
 
-    public List<Bonsai> getBonsais() {
+    public List<BonsaiEntity> getBonsais() {
         return bonsais;
     }
 
-    public void setBonsais(List<Bonsai> bonsais) {
+    public void setBonsais(List<BonsaiEntity> bonsais) {
         this.bonsais = bonsais;
     }
 }

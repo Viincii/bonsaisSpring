@@ -1,5 +1,6 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
+import fr.iut.csid.bonsais.owner.domain.models.Owner;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,7 +33,7 @@ public class BonsaiEntity {
 
     @ManyToOne
     @Column(name = "id_owner")
-    private UUID id_owner;
+    private Owner owner;
 
     @OneToMany(targetEntity = WateringEntity.class, mappedBy="bonsai", cascade = CascadeType.REMOVE)
     private List<WateringEntity> listWatering;
@@ -95,12 +96,12 @@ public class BonsaiEntity {
         this.acquisition_age = acquisition_age;
     }
 
-    public UUID getId_owner() {
-        return id_owner;
+    public Owner getId_owner() {
+        return owner;
     }
 
-    public void setId_owner(UUID id_owner) {
-        this.id_owner = id_owner;
+    public void setId_owner(Owner owner) {
+        this.owner = owner;
     }
 
     public List<WateringEntity> getListWatering() {
