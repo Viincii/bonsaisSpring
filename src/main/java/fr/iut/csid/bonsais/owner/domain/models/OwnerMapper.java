@@ -17,6 +17,6 @@ public class OwnerMapper {
             bonsais.add(BonsaiMapper.mapfromEntity(bonsaiEntity));
         }
 
-        return new Owner(ownerEntity.getId(), ownerEntity.getName(), bonsais);
+        return new Owner(ownerEntity.getId_owner(), ownerEntity.getName(), bonsais);
     }
 }

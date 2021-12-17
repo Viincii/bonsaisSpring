@@ -3,10 +3,7 @@ package fr.iut.csid.bonsais.owner.exposition;
 import fr.iut.csid.bonsais.owner.domain.models.Owner;
 import fr.iut.csid.bonsais.owner.domain.services.OwnerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +19,8 @@ public class OwnerControler {
         this.ownerService = ownerService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<OwnerDTO>> findAllWithMoreThan(@RequestBody int nbBonsai){
+    @GetMapping("/{nbBonsai}")
+    public ResponseEntity<List<OwnerDTO>> findAllWithMoreThan(@PathVariable("nbBonsai") int nbBonsai){
         return ResponseEntity.ok(ownerService.findAllWithMoreThan(nbBonsai).stream().map(owner -> OwnerDTOMapper.mapFromOwner(owner)).collect(Collectors.toList()));
     }
 }

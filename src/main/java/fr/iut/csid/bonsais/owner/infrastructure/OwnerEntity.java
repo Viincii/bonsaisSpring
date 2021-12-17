@@ -1,6 +1,5 @@
 package fr.iut.csid.bonsais.owner.infrastructure;
 
-import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
 import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiEntity;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,7 +14,7 @@ public class OwnerEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(generator = "uuid2")
-    private UUID id;
+    private UUID id_owner;
 
     @Column(name = "name")
     private String name;
@@ -26,12 +25,12 @@ public class OwnerEntity {
     public OwnerEntity() {
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getId_owner() {
+        return id_owner;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setId_owner(UUID id_owner) {
+        this.id_owner = id_owner;
     }
 
     public String getName() {

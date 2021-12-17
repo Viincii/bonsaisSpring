@@ -12,7 +12,7 @@ public class OwnerEntityMapper {
 
     public static OwnerEntity mapFromOwner(Owner owner){
         OwnerEntity ownerEntity = new OwnerEntity();
-        ownerEntity.setId(owner.getUuid());
+        ownerEntity.setId_owner(owner.getUuid());
         ownerEntity.setName(owner.getName());
 
         List<BonsaiEntity> bonsaiEntityList = new ArrayList<>();
