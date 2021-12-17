@@ -1,6 +1,5 @@
 package fr.iut.csid.bonsais.owner.domain.models;
 
-import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
 
 import java.util.List;
 import java.util.UUID;
@@ -9,9 +8,9 @@ public class Owner {
 
     private UUID uuid;
     private String name;
-    private List<Bonsai> bonsais;
+    private List<BonsaiOwner> bonsais;
 
-    public Owner(UUID uuid, String name, List<Bonsai> bonsais) {
+    public Owner(UUID uuid, String name, List<BonsaiOwner> bonsais) {
         this.uuid = uuid;
         this.name = name;
         this.bonsais = bonsais;
@@ -36,11 +35,11 @@ public class Owner {
         this.name = name;
     }
 
-    public List<Bonsai> getBonsais() {
+    public List<BonsaiOwner> getBonsais() {
         return bonsais;
     }
 
-    public void setBonsais(List<Bonsai> bonsais) {
+    public void setBonsais(List<BonsaiOwner> bonsais) {
         this.bonsais = bonsais;
     }
 }

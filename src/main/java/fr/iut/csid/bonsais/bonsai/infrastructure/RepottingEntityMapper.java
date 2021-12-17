@@ -1,6 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Repotting;
+import fr.iut.csid.bonsais.common.RepottingEntity;
 
 public class RepottingEntityMapper {
 

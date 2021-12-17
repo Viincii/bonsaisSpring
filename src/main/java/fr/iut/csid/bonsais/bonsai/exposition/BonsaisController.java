@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bonsais")
-public class BonsaisControler {
+public class BonsaisController {
 
     private BonsaiService service;
     private WateringService wateringService;
     private PruningService pruningService;
     private RepottingService repottingService;
 
-    public BonsaisControler(BonsaiService service, WateringService wateringService, PruningService pruningService, RepottingService repottingService) {
+    public BonsaisController(BonsaiService service, WateringService wateringService, PruningService pruningService, RepottingService repottingService) {
         this.service = service;
         this.wateringService = wateringService;
         this.pruningService = pruningService;
@@ -154,7 +154,7 @@ public class BonsaisControler {
 
     /*@PostMapping("/{uuid}/watering")
     public ResponseEntity<WateringDTO> createWatering(@RequestBody WateringDTO wateringDTO, @PathVariable("uuid") UUID id){
-        Watering watering = WateringMapper.mapFromDTO(wateringDTO, service.findById(id));
+        Watering watering = WateringMapper.mapOwnerFromDTO(wateringDTO, service.findById(id));
         Watering resWatering = wateringService.save(watering);
         return ResponseEntity.created(URI.create("/bonsais/"+ id + "/watering/" + resWatering.getId_pruning())).body(WateringDTOMapper.mapFromPruning(resWatering));
     }*/

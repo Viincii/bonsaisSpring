@@ -1,7 +1,6 @@
-package fr.iut.csid.bonsais.bonsai.infrastructure;
+package fr.iut.csid.bonsais.common;
 
 import fr.iut.csid.bonsais.bonsai.exposition.Status;
-import fr.iut.csid.bonsais.owner.infrastructure.OwnerEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

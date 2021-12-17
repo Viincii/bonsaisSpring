@@ -1,7 +1,5 @@
 package fr.iut.csid.bonsais.owner.domain.services;
 
-import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
-import fr.iut.csid.bonsais.bonsai.domain.services.BonsaiService;
 import fr.iut.csid.bonsais.owner.domain.models.Owner;
 import fr.iut.csid.bonsais.owner.infrastructure.OwnerRepository;
 import org.springframework.stereotype.Service;
@@ -15,11 +13,9 @@ import java.util.stream.Collectors;
 public class OwnerService {
 
     private OwnerRepository ownerRepository;
-    private BonsaiService bonsaiService;
 
-    public OwnerService(OwnerRepository ownerRepository, BonsaiService bonsaiService) {
+    public OwnerService(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
-        this.bonsaiService = bonsaiService;
     }
 
     public List<Owner> findAllWithMoreThan(int nbBonsai){

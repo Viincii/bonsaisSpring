@@ -1,4 +1,4 @@
-package fr.iut.csid.bonsais.bonsai.infrastructure;
+package fr.iut.csid.bonsais.common;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,7 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.domain.models;
 
 import fr.iut.csid.bonsais.bonsai.exposition.BonsaiDTO;
-import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiEntity;
+import fr.iut.csid.bonsais.common.BonsaiEntity;
 
 import java.util.Date;
 

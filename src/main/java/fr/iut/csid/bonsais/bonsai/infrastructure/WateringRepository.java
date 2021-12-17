@@ -2,6 +2,8 @@ package fr.iut.csid.bonsais.bonsai.infrastructure;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Watering;
 import fr.iut.csid.bonsais.bonsai.domain.models.WateringMapper;
+import fr.iut.csid.bonsais.common.WateringDao;
+import fr.iut.csid.bonsais.common.WateringEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

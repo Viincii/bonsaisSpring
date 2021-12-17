@@ -3,7 +3,8 @@ package fr.iut.csid.bonsais.bonsai.infrastructure;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
 import fr.iut.csid.bonsais.bonsai.domain.models.BonsaiMapper;
-import fr.iut.csid.bonsais.bonsai.exposition.BonsaiDTO;
+import fr.iut.csid.bonsais.common.BonsaiEntity;
+import fr.iut.csid.bonsais.common.BonsaisDao;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

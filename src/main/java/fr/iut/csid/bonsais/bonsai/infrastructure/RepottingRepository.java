@@ -2,6 +2,8 @@ package fr.iut.csid.bonsais.bonsai.infrastructure;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Repotting;
 import fr.iut.csid.bonsais.bonsai.domain.models.RepottingMapper;
+import fr.iut.csid.bonsais.common.RepottingDao;
+import fr.iut.csid.bonsais.common.RepottingEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

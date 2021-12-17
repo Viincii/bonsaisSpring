@@ -1,7 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.domain.models;
 
 import fr.iut.csid.bonsais.bonsai.exposition.WateringDTO;
-import fr.iut.csid.bonsais.bonsai.infrastructure.WateringEntity;
+import fr.iut.csid.bonsais.common.WateringEntity;
 
 import java.util.Date;
 

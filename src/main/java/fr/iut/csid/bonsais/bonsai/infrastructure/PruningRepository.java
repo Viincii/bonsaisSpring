@@ -2,6 +2,8 @@ package fr.iut.csid.bonsais.bonsai.infrastructure;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Pruning;
 import fr.iut.csid.bonsais.bonsai.domain.models.PruningMapper;
+import fr.iut.csid.bonsais.common.PruningDao;
+import fr.iut.csid.bonsais.common.PruningEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

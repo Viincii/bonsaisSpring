@@ -1,9 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.domain.services;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
-import fr.iut.csid.bonsais.bonsai.domain.models.BonsaiMapper;
 import fr.iut.csid.bonsais.bonsai.exposition.Status;
-import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiEntity;
 import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiRepository;
 import org.springframework.stereotype.Service;
 

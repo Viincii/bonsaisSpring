@@ -9,7 +9,7 @@ public class OwnerDTO {
 
     private UUID id;
     private String name;
-    private List<BonsaiDTO> bonsais;
+    private List<BonsaiOwnerLightDTO> bonsais;
 
     public OwnerDTO() {
     }
@@ -30,11 +30,11 @@ public class OwnerDTO {
         this.name = name;
     }
 
-    public List<BonsaiDTO> getBonsais() {
+    public List<BonsaiOwnerLightDTO> getBonsais() {
         return bonsais;
     }
 
-    public void setBonsais(List<BonsaiDTO> bonsais) {
+    public void setBonsais(List<BonsaiOwnerLightDTO> bonsais) {
         this.bonsais = bonsais;
     }
 }

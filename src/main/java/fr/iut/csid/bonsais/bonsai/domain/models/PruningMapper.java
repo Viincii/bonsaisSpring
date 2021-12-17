@@ -1,6 +1,6 @@
 package fr.iut.csid.bonsais.bonsai.domain.models;
 
-import fr.iut.csid.bonsais.bonsai.infrastructure.PruningEntity;
+import fr.iut.csid.bonsais.common.PruningEntity;
 
 public class PruningMapper {
 

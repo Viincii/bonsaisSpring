@@ -1,6 +1,7 @@
 package fr.iut.csid.bonsais.bonsai.infrastructure;
 
 import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
+import fr.iut.csid.bonsais.common.BonsaiEntity;
 
 public class BonsaiEntityMapper {
 
