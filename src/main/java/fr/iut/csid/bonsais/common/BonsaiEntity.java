@@ -101,7 +101,7 @@ public class BonsaiEntity {
         return owner;
     }
 
-    public void setId_owner(OwnerEntity owner) {
+    public void setOwner(OwnerEntity owner) {
         this.owner = owner;
     }
 
