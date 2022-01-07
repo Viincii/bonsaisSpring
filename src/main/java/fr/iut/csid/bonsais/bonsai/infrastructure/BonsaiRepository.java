@@ -24,11 +24,7 @@ public class BonsaiRepository {
 
     public Bonsai findById(UUID id){
         Optional<BonsaiEntity> res = bonsaisDao.findById(id);
-        if (res.isPresent()) {
-            return BonsaiMapper.mapfromEntity(res.get());
-        }
-        else
-            return null;
+        return res.map(BonsaiMapper::mapfromEntity).orElse(null);
     }
 
     public List<Bonsai> findAll() {

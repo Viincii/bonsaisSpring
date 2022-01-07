@@ -5,7 +5,7 @@ import fr.iut.csid.bonsais.common.OwnerEntity;
 import fr.iut.csid.bonsais.owner.domain.models.BonsaiOwner;
 import fr.iut.csid.bonsais.owner.domain.models.Owner;
 
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 
 public class EntityMapper {
@@ -19,15 +19,14 @@ public class EntityMapper {
         entity.setName(bonsaiOwner.getName());
         entity.setSpecies(bonsaiOwner.getSpecies());
         entity.setStatus(bonsaiOwner.getStatus());
-
-        return entity; ///TODO fini?
+        return entity;
     }
 
     public static OwnerEntity mapFromOwner(Owner owner){
         OwnerEntity ownerEntity = new OwnerEntity();
         ownerEntity.setId_owner(owner.getUuid());
         ownerEntity.setName(owner.getName());
-        ownerEntity.setBonsais(owner.getBonsais().stream().map(EntityMapper::mapFromBonsaiOwner).collect(Collectors.toList()));
+        ownerEntity.setBonsais(new ArrayList<BonsaiEntity>());
         return ownerEntity;
     }
 }

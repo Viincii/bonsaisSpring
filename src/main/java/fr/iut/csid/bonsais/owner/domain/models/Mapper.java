@@ -8,6 +8,7 @@ import fr.iut.csid.bonsais.common.OwnerEntity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Mapper {
@@ -18,8 +19,7 @@ public class Mapper {
     }
 
     public static Owner mapOwnerFromDTO(OwnerDTO owner) {
-        List<BonsaiOwner> bonsais = owner.getBonsais().stream().map((Mapper::mapfromDTO)).collect(Collectors.toList());
-        return new Owner(owner.getId(), owner.getName(), bonsais);
+        return new Owner(owner.getId(), owner.getName(), null);
     }
 
     public static BonsaiOwner mapfromEntity(BonsaiEntity bonsaiEntity){
@@ -39,7 +39,14 @@ public class Mapper {
             lastRepotting = null;
         else
             lastRepotting = bonsaiEntity.getListRepotting().get(0).getDate();
-        return new BonsaiOwner(bonsaiEntity.getId(),bonsaiEntity.getName(), bonsaiEntity.getSpecies(),bonsaiEntity.getStatus(), bonsaiEntity.getAcquisition_date(), bonsaiEntity.getAcquisition_age(), null, lastWatering, lastPruning, lastRepotting);
+
+        UUID idOwner;
+        if(bonsaiEntity.getOwner() == null){
+            idOwner = null;
+        }
+        else
+            idOwner = bonsaiEntity.getOwner().getId_owner();
+        return new BonsaiOwner(bonsaiEntity.getId(),bonsaiEntity.getName(), bonsaiEntity.getSpecies(),bonsaiEntity.getStatus(), bonsaiEntity.getAcquisition_date(), bonsaiEntity.getAcquisition_age(), idOwner, lastWatering, lastPruning, lastRepotting);
     }
 
 

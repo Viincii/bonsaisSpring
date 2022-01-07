@@ -97,7 +97,7 @@ public class BonsaiEntity {
         this.acquisition_age = acquisition_age;
     }
 
-    public OwnerEntity getId_owner() {
+    public OwnerEntity getOwner() {
         return owner;
     }
 

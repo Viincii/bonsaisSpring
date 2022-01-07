@@ -23,7 +23,10 @@ public class OwnersController {
 
     @GetMapping
     public ResponseEntity<List<OwnerDTO>> findAllWithMoreThan(@RequestParam int nbBonsai){
-        return ResponseEntity.ok(ownerService.findAllWithMoreThan(nbBonsai).stream().map(owner -> DTOMapper.mapDTOFromOwner(owner)).collect(Collectors.toList()));
+        return ResponseEntity.ok(ownerService.findAllWithMoreThan(nbBonsai)
+                .stream()
+                .map(DTOMapper::mapDTOFromOwner)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{uuid}")
@@ -50,14 +53,16 @@ public class OwnersController {
     }
 
     @PostMapping("/{owner_id}/bonsais/{bonsai_id}/transfer")
-    public ResponseEntity<BonsaiDTO> transfertBonsai(@PathVariable("owner_id") UUID owner_id, @PathVariable("bonsai_id") UUID bonsai_id, @RequestBody UUID new_owner_id){
-        //TODO
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<BonsaiOwnerLightDTO> transfertBonsai(@PathVariable("owner_id") UUID owner_id, @PathVariable("bonsai_id") UUID bonsai_id, @RequestBody OwnerDTO ownerDTO){
+        return ownerService.transfertBonsai(owner_id, bonsai_id, ownerDTO.getId())
+                .map(DTOMapper::mapLightDTOFromBonsaiOwner)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
-
     @PostMapping("/{owner_id}/bonsai")
-    public ResponseEntity<BonsaiDTO> addBonsai(@PathVariable("owner_id") UUID owner_id, @RequestBody UUID bonsai_id){
-        //TODO
-        return ResponseEntity.notFound().build();
+    public List<BonsaiOwnerLightDTO> addBonsai(@PathVariable("owner_id") UUID owner_id, @RequestBody List<UUID> bonsai_ids){
+        return ownerService.addBonsais(owner_id, bonsai_ids).stream()
+                .map(DTOMapper::mapLightDTOFromBonsaiOwner)
+                .collect(Collectors.toList());
     }
 }
