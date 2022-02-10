@@ -3,6 +3,8 @@ package fr.iut.csid.bonsais.bonsai.domain.services;
 import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
 import fr.iut.csid.bonsais.bonsai.exposition.Status;
 import fr.iut.csid.bonsais.bonsai.infrastructure.BonsaiRepository;
+import fr.iut.csid.bonsais.user.domain.models.AppUser;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,13 +37,24 @@ public class BonsaiService {
     }
 
     public Bonsai patch(Bonsai bonsai, UUID id) {
-        return save(repository.findById(id).update(bonsai));
+        Bonsai bonsaiBd = repository.findById(id);
+        AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN") || auth.getAuthority().equals("STAFF")) || bonsaiBd.getId_owner().equals(user.getId())){
+            return save(bonsaiBd.update(bonsai));
+        }
+        else {
+            return bonsaiBd;
+        }
     }
 
     public void putStatus(Status status, UUID id) {
         Bonsai bonsai = findById(id);
-        bonsai.setStatus(status);
-        repository.save(bonsai);
+        AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN") || auth.getAuthority().equals("STAFF")) || bonsai.getId_owner().equals(user.getId())){
+            bonsai.setStatus(status);
+            repository.save(bonsai);
+        }
+
     }
 
     public void setOwner(UUID id_bonsai, UUID id_owner) {

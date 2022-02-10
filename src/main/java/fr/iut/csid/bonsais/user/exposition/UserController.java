@@ -62,6 +62,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('STAFF')")
     public List<UserDTO> getUsers(){
         return userService.findAllUsers().stream().map(Mapper::mapFromModel).collect(Collectors.toList());
     }

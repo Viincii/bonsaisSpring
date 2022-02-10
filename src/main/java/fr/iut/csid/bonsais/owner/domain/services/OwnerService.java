@@ -4,6 +4,8 @@ import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
 import fr.iut.csid.bonsais.owner.domain.models.BonsaiOwner;
 import fr.iut.csid.bonsais.owner.domain.models.Owner;
 import fr.iut.csid.bonsais.owner.infrastructure.OwnerRepository;
+import fr.iut.csid.bonsais.user.domain.models.AppUser;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,7 +39,8 @@ public class OwnerService {
     public Optional<BonsaiOwner> transfertBonsai(UUID owner_id, UUID bonsai_id, UUID new_owner_id){
         Optional<BonsaiOwner> bonsaiOwner = ownerRepository.findBonsaiById(bonsai_id);
         Optional<Owner> newOwner = ownerRepository.findById(new_owner_id);
-        if (bonsaiOwner.isPresent() && bonsaiOwner.get().getId_owner().equals(owner_id) && newOwner.isPresent()){
+        AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (bonsaiOwner.isPresent() && newOwner.isPresent() && (bonsaiOwner.get().getId_owner().equals(owner_id) || user.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN")))){
             return ownerRepository.updateOwner(newOwner.get(), bonsai_id);
         }
         else {
@@ -48,10 +51,12 @@ public class OwnerService {
     public  List<BonsaiOwner> addBonsais(UUID owner_id, List<UUID> bonsai_ids){
         List<BonsaiOwner> addedBonsais = new ArrayList<>();
         Optional<Owner> newOwner = ownerRepository.findById(owner_id);
+        AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         if (newOwner.isPresent()){
             for (UUID id : bonsai_ids){
                 Optional<BonsaiOwner> bonsaiOwner = ownerRepository.findBonsaiById(id);
-                if (bonsaiOwner.isPresent() && bonsaiOwner.get().getId_owner()== null){
+                if (bonsaiOwner.isPresent() && (bonsaiOwner.get().getId_owner()== null || user.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN")))){
                     ownerRepository.updateOwner(newOwner.get(), id).ifPresent(addedBonsais::add);
                 }
             }

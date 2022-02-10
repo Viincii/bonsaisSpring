@@ -5,6 +5,8 @@ import fr.iut.csid.bonsais.bonsai.domain.models.Bonsai;
 import fr.iut.csid.bonsais.bonsai.domain.models.BonsaiMapper;
 import fr.iut.csid.bonsais.common.BonsaiEntity;
 import fr.iut.csid.bonsais.common.BonsaisDao;
+import fr.iut.csid.bonsais.user.domain.models.AppUser;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -43,6 +45,15 @@ public class BonsaiRepository {
     }
 
     public void deleteById(UUID id) {
-        bonsaisDao.deleteById(id);
+        AppUser user = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN"))){
+            bonsaisDao.deleteById(id);
+        }
+        else{
+         Optional<BonsaiEntity> bonsaiEntity = bonsaisDao.findById(id);
+         if (bonsaiEntity.isPresent() && bonsaiEntity.get().getOwner().getId_owner().equals(user.getId())){
+             bonsaisDao.deleteById(id);
+         }
+        }
     }
 }
