@@ -4,6 +4,7 @@ import fr.iut.csid.bonsais.bonsai.exposition.BonsaiDTO;
 import fr.iut.csid.bonsais.owner.domain.models.Mapper;
 import fr.iut.csid.bonsais.owner.domain.services.OwnerService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -22,6 +23,7 @@ public class OwnersController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<OwnerDTO>> findAllWithMoreThan(@RequestParam int nbBonsai){
         return ResponseEntity.ok(ownerService.findAllWithMoreThan(nbBonsai)
                 .stream()
